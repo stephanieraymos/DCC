@@ -24,7 +24,7 @@ export const PARTNERS = [
       id: 3,
       name: "VigLink",
       image: "",
-      featured: false,
+      featured: true,
       description: ""
   }
 ]
