@@ -8,7 +8,7 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            admins: admins,
+            admins: ADMINS,
             selectedAdmin: null
         };
     }
