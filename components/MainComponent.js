@@ -21,7 +21,7 @@ class Main extends Component {
         return (
             <View style={{flex: 1}}>
                 <Directory 
-                    admin={this.state.admins} 
+                    admins={this.state.admins} 
                     onPress={adminId => this.onAdminSelect(adminId)} />
                 <AdminInfo 
                     admin={this.state.admins.filter(admin => admin.id === this.state.selectedAdmin)[0]}
