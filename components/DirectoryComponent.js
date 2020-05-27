@@ -17,7 +17,7 @@ function Directory(props) {
 
     return (
         <FlatList 
-            data={props.admin}
+            data={props.admins}
             renderItem={renderDirectoryItem}
             keyExtractor={item => item.id.toString()}
         />
