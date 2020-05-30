@@ -1,9 +1,46 @@
 import React, { Component } from 'react';
 import Home from './HomeComponent';
+import About from './AboutComponent';
+import Contact from './ContactComponent';
 import Directory from './DirectoryComponent';
 import AdminInfo from './AdminInfoComponent';
 import { View, Platform } from 'react-native';
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+
+
+const AboutNavigator = createStackNavigator(
+    {
+        About: { screen: About }
+    },
+    {
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: '#5637DD'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            }
+        }
+    }
+  );
+
+const ContactNavigator = createStackNavigator(
+    {
+        Contact: { screen: Contact }
+    },
+    {
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: '#5637DD'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            }
+        }
+    }
+  );
 
 const DirectoryNavigator = createStackNavigator(
   {
@@ -42,13 +79,16 @@ const HomeNavigator = createStackNavigator(
 );
 
 const MainNavigator = createDrawerNavigator(
-  {
-      Home: { screen: HomeNavigator },
-      Directory: { screen: DirectoryNavigator }
-  },
-  {
-      drawerBackgroundColor: '#CEC8FF'
-  }
+    {
+        Home: { screen: HomeNavigator },
+        Directory: { screen: DirectoryNavigator },
+        Contact: { screen: ContactNavigator },
+        About: { screen: AboutNavigator }
+
+    },
+    {
+        drawerBackgroundColor: '#CEC8FF'
+    }
 );
 
 class Main extends Component {
