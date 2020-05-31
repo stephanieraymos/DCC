@@ -19,6 +19,19 @@ function RenderAdmin({ admin }) {
   return <View />;
 }
 
+function RenderComment({comments}) {
+
+  return(
+      <Card title='Comments'>
+          <FlatList
+          data={comments}
+          renderItem={renderCommentItem}
+          keyExtractor={item => item.id.toString()}
+          />
+      </Card>
+  )
+}
+
 class AdminInfo extends Component {
 
   constructor(props) {
