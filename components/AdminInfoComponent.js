@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, ScrollView, FlatList } from 'react-native';
 import { Card } from 'react-native-elements';
 import { ADMINS } from '../shared/admins';
+import { COMMENTS } from '../shared/comments';
 
 function RenderAdmin({ admin }) {
   if (admin) {
@@ -23,7 +24,8 @@ class AdminInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      admins: ADMINS
+      admins: ADMINS,
+      comments: COMMENTS
     };
   }
 
