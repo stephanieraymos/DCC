@@ -36,7 +36,13 @@ class AdminInfo extends Component {
   render() {
     const adminId = this.props.navigation.getParam('adminId');
     const admin = this.state.admins.filter(admin => admin.id === adminId)[0];
-    return <RenderAdmin admin={admin} />;
+    const comments = this.state.comments.filter(comment => comment.adminId === adminId);
+    return (
+    <ScrollView>
+      <RenderAdmin admin={admin} />
+      <RenderComments comments={comments} />
+    </ScrollView>
+    );
   }
 }
 
