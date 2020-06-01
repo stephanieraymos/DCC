@@ -132,26 +132,24 @@ const MainNavigator = createDrawerNavigator(
         Home: {
             screen: HomeNavigator,
             navigationOptions: {
-                drawerIcon: ({tintColor}) => (
+                drawerIcon: ({focused}) => (
                     <Icon
                         name='home'
                         type='font-awesome'
                         size={24}
-                        color={tintColor}
-                    />
+                        color={focused ? '#980000' : 'gray'}                    />
                 )
             }
         },
         Directory: {
             screen: DirectoryNavigator,
             navigationOptions: {
-                drawerIcon: ({tintColor}) => (
+                drawerIcon: ({focused}) => (
                     <Icon
                         name='list'
                         type='font-awesome'
                         size={24}
-                        color={tintColor}
-                    />
+                        color={focused ? '#980000' : 'gray'}                    />
                 )
             }
         },
@@ -159,12 +157,13 @@ const MainNavigator = createDrawerNavigator(
             screen: AboutNavigator,
             navigationOptions: {
                 drawerLabel: 'About Us',
-                drawerIcon: ({tintColor}) => (
+                drawerIcon: ({focused}) => (
                     <Icon
-                        name='info-circle'
+                        name={'info-circle'}
                         type='font-awesome'
                         size={24}
-                        color={tintColor}
+                        color={focused ? '#980000' : 'gray'}
+                        
                     />
                 )
             }
@@ -173,13 +172,12 @@ const MainNavigator = createDrawerNavigator(
             screen: ContactNavigator,
             navigationOptions: {
                 drawerLabel: 'Contact Us',
-                drawerIcon: ({tintColor}) => (
+                drawerIcon: ({focused}) => (
                     <Icon
                         name='address-card'
                         type='font-awesome'
                         size={24}
-                        color={tintColor}
-                    />
+                        color={focused ? '#980000' : 'gray'}                    />
                 )
             }
         }
