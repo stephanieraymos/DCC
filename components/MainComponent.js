@@ -4,9 +4,10 @@ import About from './AboutComponent';
 import Contact from './ContactComponent';
 import Directory from './DirectoryComponent';
 import AdminInfo from './AdminInfoComponent';
-import { View, Platform, StyleSheet } from 'react-native';
-import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
+import { createStackNavigator, createDrawerNavigator, DrawerItems } from 'react-navigation';
 import { icon, Icon } from 'react-native-elements';
+import SafeAreaView from 'react-native-safe-area-view';
 
 
 const AboutNavigator = createStackNavigator(
@@ -16,7 +17,7 @@ const AboutNavigator = createStackNavigator(
     {
         navigationOptions: ({navigation}) => ({
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: '#980000'
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -39,7 +40,7 @@ const ContactNavigator = createStackNavigator(
     {
         navigationOptions: ({navigation}) => ({
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: '#980000'
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -74,7 +75,7 @@ const DirectoryNavigator = createStackNavigator(
       initialRouteName: 'Directory',
       navigationOptions: {
           headerStyle: {
-              backgroundColor: '#5637DD'
+              backgroundColor: '#980000'
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -91,7 +92,7 @@ const HomeNavigator = createStackNavigator(
     {
       navigationOptions: ({navigation}) => ({
           headerStyle: {
-              backgroundColor: '#5637DD'
+              backgroundColor: '#980000'
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
@@ -105,6 +106,25 @@ const HomeNavigator = createStackNavigator(
         />
         })
     }
+);
+
+
+const CustomDrawerContentComponent = props => (
+    <ScrollView>
+        <SafeAreaView 
+            style={styles.container}
+            forceInset={{top: 'always', horizontal: 'never'}}>
+            <View style={styles.drawerHeader}>
+                <View style={{flex: 1}}>
+                    <Image source={require('./images/logo.jpg')} style={styles.drawerImage} />
+                </View>
+                <View style={{flex: 2}}>
+                    <Text style={styles.drawerHeaderText}>Deals and Codes Community</Text>
+                </View>
+            </View>
+            <DrawerItems {...props} />
+        </SafeAreaView>
+    </ScrollView>
 );
 
 const MainNavigator = createDrawerNavigator(
@@ -166,6 +186,7 @@ const MainNavigator = createDrawerNavigator(
     },
     {
         drawerBackgroundColor: '#CEC8FF',
+        contentComponent: CustomDrawerContentComponent
     }
 );
 
@@ -180,10 +201,34 @@ class Main extends Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    drawerHeader: {
+        backgroundColor: '#980000',
+        height: 140,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        flexDirection: 'row'
+    },
+    drawerHeaderText: {
+        color: '#fff',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginLeft: 20,
+        textAlign: 'center',
+    },
+    drawerImage: {
+        margin: 10,
+        height: 80,
+        width: 100
+    },
     stackIcon: {
         marginLeft: 10,
         color: '#fff',
         fontSize: 24
     }
 });
+
 export default Main;
