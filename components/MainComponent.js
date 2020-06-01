@@ -4,8 +4,9 @@ import About from './AboutComponent';
 import Contact from './ContactComponent';
 import Directory from './DirectoryComponent';
 import AdminInfo from './AdminInfoComponent';
-import { View, Platform } from 'react-native';
+import { View, Platform, StyleSheet } from 'react-native';
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import { icon, Icon } from 'react-native-elements';
 
 
 const AboutNavigator = createStackNavigator(
@@ -43,11 +44,21 @@ const ContactNavigator = createStackNavigator(
   );
 
 const DirectoryNavigator = createStackNavigator(
-  {
-      Directory: { screen: Directory },
+    {
+      Directory: { 
+          screen: Directory,
+          navigationOptions: ({navigation}) => ({
+            headerLeft: <Icon
+                name='list'
+                type='font-awesome'
+                iconStyle={styles.stackIcon}
+                onPress={() => navigation.toggleDrawer()}
+            />
+          })
+        },
       AdminInfo: { screen: AdminInfo }
-  }, 
-  {
+    }, 
+    {
       initialRouteName: 'Directory',
       navigationOptions: {
           headerStyle: {
@@ -57,8 +68,8 @@ const DirectoryNavigator = createStackNavigator(
           headerTitleStyle: {
               color: '#fff'
           }
-      }
-  }
+        }
+    }
 );
 
 const HomeNavigator = createStackNavigator(
