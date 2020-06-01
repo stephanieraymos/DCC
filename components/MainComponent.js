@@ -73,20 +73,26 @@ const DirectoryNavigator = createStackNavigator(
 );
 
 const HomeNavigator = createStackNavigator(
-  {
+    {
       Home: { screen: Home }
-  },
-  {
-      navigationOptions: {
+    },
+    {
+      navigationOptions: ({navigation}) => ({
           headerStyle: {
               backgroundColor: '#5637DD'
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
               color: '#fff'
-          }
-      }
-  }
+            },
+            headerLeft: <Icon
+            name='list'
+            type='font-awesome'
+            iconStyle={styles.stackIcon}
+            onPress={() => navigation.toggleDrawer()}
+        />
+        })
+    }
 );
 
 const MainNavigator = createDrawerNavigator(
