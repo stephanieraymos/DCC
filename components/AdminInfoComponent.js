@@ -20,7 +20,7 @@ function RenderAdmin(props) {
           style={{display: 'flex', flexDirection: 'row',
           justifyContent: 'space-between'}}>
           <Icon
-            name='heart-o'
+            name={props.favorite ? 'heart' : 'heart-o'}
             type='font-awesome'
             color='#f50'
             raised
