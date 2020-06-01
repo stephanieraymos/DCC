@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, FlatList } from 'react-native';
-import { Card } from 'react-native-elements';
+import { Text, View, ScrollView, FlatList, Linking } from 'react-native';
+import { Card, Icon } from 'react-native-elements';
 import { ADMINS } from '../shared/admins';
 import { COMMENTS } from '../shared/comments';
 
-function RenderAdmin({ admin }) {
+function RenderAdmin(props) {
+
+  const {admin} = props;
+
   if (admin) {
     return (
       <Card
@@ -13,6 +16,30 @@ function RenderAdmin({ admin }) {
         <Text style={{ margin: 10 }}>
           {admin.description}
         </Text>
+        <View
+          style={{display: 'flex', flexDirection: 'row',
+          justifyContent: 'space-between'}}>
+          <Icon
+            name='heart-o'
+            type='font-awesome'
+            color='#f50'
+            raised
+            reverse
+            onPress={() => props.favorite ? 
+              console.log("Already set as a favorite admin") : props.markFavorite()}
+          />
+          <Icon
+            containerStyle={{paddingRight: 8,
+              alignSelf: 'flex-end',
+            }}
+            name={props.favorite ? 'envelope' : 'envelope-o'}          
+            type='font-awesome'
+            color='#0000FF'
+            raised
+            reverse
+            onPress={() => props.message()}
+          />
+        </View>
       </Card>
     );
   }
@@ -47,9 +74,17 @@ class AdminInfo extends Component {
     super(props);
     this.state = {
       admins: ADMINS,
-      comments: COMMENTS
-    };
-  }
+      comments: COMMENTS,
+      favorite: false,
+  };
+}
+
+markFavorite() {
+this.setState({favorite: true});
+}
+
+message() {
+  Linking.openURL('mailto:mailto@dealsandcodescommunity@gmail.com');  }
 
   static navigationOptions = {
     title: 'Admin Information'
@@ -61,7 +96,12 @@ class AdminInfo extends Component {
     const comments = this.state.comments.filter(comment => comment.adminId === adminId);
     return (
     <ScrollView>
-      <RenderAdmin admin={admin} />
+      <RenderAdmin 
+        admin={admin}
+        favorite={this.state.favorite}
+        markFavorite={() => this.markFavorite()}
+        message={() => this.message()}
+      />
       <RenderComments comments={comments} />
     </ScrollView>
     );

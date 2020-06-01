@@ -5,7 +5,7 @@ export const COMMENTS =
         adminId: 0,
         rating: 5, 
         text: "Stephanie always posts the greatest deals. I appreciate everything you guys do for us. Thank you!",
-        author: "Tinus Lorvaldes",
+        author: "Kendra Fleming",
         date: "2020-05-25T16:30Z"
     },
     {
@@ -13,7 +13,7 @@ export const COMMENTS =
         adminId: 0,
         rating: 5, 
         text: "Thank you for all you do!",
-        author: "Brennen Ech",
+        author: "Brianna Lopez",
         date: "2020-05-17T03:33Z"
     },
     {
@@ -21,7 +21,7 @@ export const COMMENTS =
         adminId: 0,
         rating: 5, 
         text: "You're the best, girl!",
-        author: "McKenzie Sebastian",
+        author: "Lisa Reyez",
         date: "2020-02-18T18:12Z"
     },
     {
@@ -37,7 +37,7 @@ export const COMMENTS =
         adminId: 0,
         rating: 4, 
         text: "I love this site so much! Sometimes the deals are out of stock by the time I see them but I guess I'm not quick enough lol",
-        author: "Ann Dabramov",
+        author: "Lacie Rodriguez",
         date: "2020-05-23T19:44Z"
     },
     {
@@ -61,22 +61,22 @@ export const COMMENTS =
         adminId: 1,
         rating: 5, 
         text: "These girls are the best!",
-        author: "Jordan Runn",
+        author: "Jessica Pullman",
         date: "2020-05-04T20:11Z"
     },
     {
         id: 8,
-        adminId: 2,
+        adminId: 1,
         rating: 5, 
         text: "Audie always posts super early before I have to go to work! If it wasn't for her I would miss all the good deals.",
-        author: "Ann Dabramov",
+        author: "Sarah Louise",
         date: "2020-05-23T19:44Z"
     },
     {
         id: 9,
         adminId: 2,
         rating: 5, 
-        text: "Thank you Audie!",
+        text: "Thank you Laura!",
         author: "Tinus Lorvaldes",
         date: "2020-05-25T16:30Z"
     },
@@ -86,6 +86,22 @@ export const COMMENTS =
         rating: 4, 
         text: "Loving the deals! Wish some of them were avalible for more options but I chose the blue one. Thanks.",
         author: "Ann Dabramov",
+        date: "2020-05-23T19:44Z"
+    },
+    {
+        id: 13,
+        adminId: 2,
+        rating: 5, 
+        text: "This is amazing! Thank you!.",
+        author: "DeoLinda Antoinette",
+        date: "2020-05-23T19:44Z"
+    },
+    {
+        id: 14,
+        adminId: 2,
+        rating: 5, 
+        text: "Thanks for the deals",
+        author: "Rita Anderson",
         date: "2020-05-23T19:44Z"
     },
 ]
