@@ -14,15 +14,21 @@ const AboutNavigator = createStackNavigator(
         About: { screen: About }
     },
     {
-        navigationOptions: {
+        navigationOptions: ({navigation}) => ({
             headerStyle: {
                 backgroundColor: '#5637DD'
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
                 color: '#fff'
-            }
-        }
+              },
+              headerLeft: <Icon
+                  name='info-circle'
+                  type='font-awesome'
+                  iconStyle={styles.stackIcon}
+                  onPress={() => navigation.toggleDrawer()}
+          />
+          })
     }
   );
 
@@ -31,15 +37,21 @@ const ContactNavigator = createStackNavigator(
         Contact: { screen: Contact }
     },
     {
-        navigationOptions: {
+        navigationOptions: ({navigation}) => ({
             headerStyle: {
                 backgroundColor: '#5637DD'
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
                 color: '#fff'
-            }
-        }
+              },
+              headerLeft: <Icon
+                  name='address-card'
+                  type='font-awesome'
+                  iconStyle={styles.stackIcon}
+                  onPress={() => navigation.toggleDrawer()}
+          />
+          })
     }
   );
 
@@ -86,10 +98,10 @@ const HomeNavigator = createStackNavigator(
               color: '#fff'
             },
             headerLeft: <Icon
-            name='list'
-            type='font-awesome'
-            iconStyle={styles.stackIcon}
-            onPress={() => navigation.toggleDrawer()}
+                name='home'
+                type='font-awesome'
+                iconStyle={styles.stackIcon}
+                onPress={() => navigation.toggleDrawer()}
         />
         })
     }
@@ -118,4 +130,11 @@ class Main extends Component {
   }
 }
 
+const styles = StyleSheet.create({
+    stackIcon: {
+        marginLeft: 10,
+        color: '#fff',
+        fontSize: 24
+    }
+});
 export default Main;
