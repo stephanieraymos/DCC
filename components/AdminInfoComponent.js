@@ -32,7 +32,7 @@ function RenderAdmin(props) {
             containerStyle={{paddingRight: 8,
               alignSelf: 'flex-end',
             }}
-            name={props.favorite ? 'envelope' : 'envelope-o'}          
+            name={props.message ? 'envelope' : 'envelope-o'}          
             type='font-awesome'
             color='#0000FF'
             raised
