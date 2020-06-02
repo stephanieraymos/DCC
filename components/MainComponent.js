@@ -6,7 +6,7 @@ import Directory from './DirectoryComponent';
 import AdminInfo from './AdminInfoComponent';
 import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, DrawerItems } from 'react-navigation';
-import { icon, Icon } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 
 
