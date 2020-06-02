@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, FlatList } from 'react-native';
+import { ScrollView, Text, FlatList, View, TouchableOpacity } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
@@ -53,7 +53,7 @@ class AboutComponent extends Component {
       <ScrollView>
         <Mission />
         <Card
-          title={"Community Partners"}>
+          title={"Partners"}>
           <FlatList
             data={this.props.partners.partners}
             renderItem={renderPartner}

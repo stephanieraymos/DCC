@@ -9,7 +9,7 @@ import { createStackNavigator, createDrawerNavigator, DrawerItems } from 'react-
 import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
-import { fetchCampsites, fetchComments, fetchPromotions,
+import { fetchAdmins, fetchComments, fetchPromotions,
     fetchPartners } from '../redux/ActionCreators';
 
 const mapDispatchToProps = {

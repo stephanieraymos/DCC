@@ -31,7 +31,7 @@ export const addComments = (comments) => ({
     payload: comments
 });
 
-export const fetchCampsites = () => dispatch => {
+export const fetchAdmins = () => dispatch => {
 
     dispatch(adminsLoading());
 
