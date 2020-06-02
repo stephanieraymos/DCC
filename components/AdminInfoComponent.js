@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, FlatList, Linking } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
-import { ADMINS } from '../shared/admins';
-import { COMMENTS } from '../shared/comments';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+
+const mapStateToProps = state => {
+    return {
+      admins: state.admins,
+      comments: state.comments
+    };
+};
 
 function RenderAdmin(props) {
 
@@ -12,8 +19,7 @@ function RenderAdmin(props) {
     return (
       <Card
         featuredTitle={admin.name}
-        image={require('./images/stephanie.jpg')}>
-        <Text style={{ margin: 10 }}>
+        image={{uri: baseUrl + campsite.image}}>        <Text style={{ margin: 10 }}>
           {admin.description}
         </Text>
         <View
@@ -73,8 +79,6 @@ class AdminInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      admins: ADMINS,
-      comments: COMMENTS,
       favorite: false,
   };
 }
@@ -92,8 +96,8 @@ message() {
 
   render() {
     const adminId = this.props.navigation.getParam('adminId');
-    const admin = this.state.admins.filter(admin => admin.id === adminId)[0];
-    const comments = this.state.comments.filter(comment => comment.adminId === adminId);
+    const admin = this.props.admins.admins.filter(admin => admin.id === adminId)[0];
+    const comments = this.props.comments.comments.filter(comment => comment.adminId === adminId);
     return (
     <ScrollView>
       <RenderAdmin 
@@ -108,4 +112,4 @@ message() {
   }
 }
 
-export default AdminInfo;
+export default connect(mapStateToProps)(AdminInfo);
