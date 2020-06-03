@@ -196,7 +196,7 @@ const MainNavigator = createDrawerNavigator(
     {
         drawerBackgroundColor: '#CEC8FF',
         contentOptions: {
-              activeTintColor: '##980000'
+              activeTintColor: '#980000'
             },
         contentComponent: CustomDrawerContentComponent
     }
