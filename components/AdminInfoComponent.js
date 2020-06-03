@@ -19,7 +19,8 @@ function RenderAdmin(props) {
     return (
       <Card
         featuredTitle={admin.name}
-        image={{uri: baseUrl + campsite.image}}>        <Text style={{ margin: 10 }}>
+        image={{uri: baseUrl + admin.image}}>        
+        <Text style={{ margin: 10 }}>
           {admin.description}
         </Text>
         <View

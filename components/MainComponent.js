@@ -141,12 +141,14 @@ const MainNavigator = createDrawerNavigator(
         Home: {
             screen: HomeNavigator,
             navigationOptions: {
-                drawerIcon: ({focused}) => (
+                    
+                    drawerIcon: ({focused}) => (
                     <Icon
                         name='home'
                         type='font-awesome'
                         size={24}
-                        color={focused ? '#980000' : 'gray'}                    />
+                        color={focused ? '#980000' : 'gray'}              
+                        />
                 )
             }
         },
@@ -193,6 +195,9 @@ const MainNavigator = createDrawerNavigator(
     },
     {
         drawerBackgroundColor: '#CEC8FF',
+        contentOptions: {
+              activeTintColor: '##980000'
+            },
         contentComponent: CustomDrawerContentComponent
     }
 );

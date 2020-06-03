@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, ScrollView } from 'react-native';
 import { ADMINS } from '../shared/admins';
 import { Card } from 'react-native-elements';
+import { RenderAdmin } from './AdminInfoComponent';
 
 class ContactComponent extends Component {
 
@@ -16,12 +17,16 @@ static navigationOptions = {
     title: 'Contact Us'
 }
   render() {
+    <RenderAdmin 
+    message={() => this.message()}
+    />
     return (
       <ScrollView>
         <Card  
         title={"Contact Information"}
         wrapperStyle={{margin: 20}} >
-        <Text>
+        <Text
+        onPress={() => this.props.admin.email}>
         Email: dealsandcodescommunity@gmail.com
         </Text>
         </Card>

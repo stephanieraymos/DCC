@@ -15,12 +15,11 @@ function Mission() {
   return (
     <Card
       title={"Our Mission"}>
-      <View style={{ display: "flex", flexDirection: "row", flex: 1, flexWrap: 'wrap', margin: 10 }}>
+      <View style={{ display: "flex", flexDirection: "row", flex: 1, flexWrap: 'wrap'}}>
         <Text>The Deals and Codes Community </Text>
         <TouchableOpacity>
-          <Text style={{ color: 'blue' }} onpress={() => Linking.openURL('https://www.facebook.com/groups/dealsandcodescommunity/')} >
-          facebook group
-          </Text>
+          <Text style={{ color: 'blue' }} onpress={() => Linking.openURL('https://www.facebook.com/groups/dealsandcodescommunity/')}>
+          facebook group</Text>
         </TouchableOpacity>
         <Text>was created in 2018 by Stephanie Raymos. 
           This community is a place to find amazing deals for many retailers such as Amazon and Walmart.  
