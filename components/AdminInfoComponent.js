@@ -3,12 +3,18 @@ import { Text, View, ScrollView, FlatList, Linking } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
+import { postFavorite } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
-      admins: state.admins,
-      comments: state.comments
+        admins: state.admins,
+        comments: state.comments,
+        favorites: state.favorites
     };
+};
+
+const mapDispatchToProps = {
+    postFavorite: adminId => (postFavorite(adminId))
 };
 
 function RenderAdmin(props) {
@@ -77,15 +83,8 @@ function RenderComments({comments}) {
 
 class AdminInfo extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      favorite: false,
-  };
-}
-
-markFavorite() {
-this.setState({favorite: true});
+markFavorite(adminId) {
+  this.props.postFavorite(adminId);
 }
 
 message() {
@@ -103,8 +102,8 @@ message() {
     <ScrollView>
       <RenderAdmin 
         admin={admin}
-        favorite={this.state.favorite}
-        markFavorite={() => this.markFavorite()}
+        favorite={this.props.favorites.includes(adminId)}
+        markFavorite={() => this.markFavorite(adminId)}
         message={() => this.message()}
       />
       <RenderComments comments={comments} />
@@ -113,4 +112,4 @@ message() {
   }
 }
 
-export default connect(mapStateToProps)(AdminInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminInfo);
