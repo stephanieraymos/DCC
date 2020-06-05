@@ -4,6 +4,7 @@ import About from './AboutComponent';
 import Contact from './ContactComponent';
 import Directory from './DirectoryComponent';
 import AdminInfo from './AdminInfoComponent';
+import Reservation from './ReservationComponent';
 import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, DrawerItems } from 'react-navigation';
 import { Icon } from 'react-native-elements';
@@ -117,6 +118,29 @@ const HomeNavigator = createStackNavigator(
     }
 );
 
+const ReservationNavigator = createStackNavigator(
+    {
+        Reservation: { screen: Reservation }
+    },
+    {
+        navigationOptions: ({navigation}) => ({
+            headerStyle: {
+                backgroundColor: '#980000'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            },
+            headerLeft: <Icon
+                name='heart'
+                type='font-awesome'
+                iconStyle={styles.stackIcon}
+                onPress={() => navigation.toggleDrawer()}
+            />
+        })
+    }
+);
+
 
 const CustomDrawerContentComponent = props => (
     <ScrollView>
@@ -161,6 +185,20 @@ const MainNavigator = createDrawerNavigator(
                         type='font-awesome'
                         size={24}
                         color={focused ? '#980000' : 'gray'}                    />
+                )
+            }
+        },
+        Reservation: {
+            screen: ReservationNavigator,
+            navigationOptions: {
+                drawerLabel: 'Reserve Cooperation',
+                drawerIcon: ({tintColor}) => (
+                    <Icon
+                        name='heart'
+                        type='font-awesome'
+                        size={24}
+                        color={tintColor}
+                    />
                 )
             }
         },
