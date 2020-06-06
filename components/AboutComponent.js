@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, FlatList, View, TouchableOpacity } from 'react-native';
+import { ScrollView, Text, FlatList, View, TouchableOpacity, Linking } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
@@ -19,7 +19,9 @@ function Mission() {
       <View style={{ display: "flex", flexDirection: "row", flex: 1, flexWrap: 'wrap'}}>
         <Text>The Deals and Codes Community </Text>
         <TouchableOpacity>
-          <Text style={{ color: 'blue' }} onpress={() => Linking.openURL('https://www.facebook.com/groups/dealsandcodescommunity/')}>
+          <Text 
+          style={{ color: 'blue' }} 
+          onpress={() => Linking.openURL('https://www.facebook.com/groups/dealsandcodescommunity/')}>
           facebook group</Text>
         </TouchableOpacity>
         <Text>was created in 2018 by Stephanie Raymos. 

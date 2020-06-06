@@ -17,9 +17,7 @@ static navigationOptions = {
     title: 'Contact Us'
 }
   render() {
-    <RenderAdmin 
-    message={() => this.message()}
-    />
+    <RenderAdmin />
     return (
       <ScrollView>
         <Card  
