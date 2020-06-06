@@ -152,3 +152,22 @@ export const addFavorite = adminId => ({
     type: ActionTypes.ADD_FAVORITE,
     payload: adminId
 });
+
+export const postComment = (adminId, rating, author, text) => dispatch => {
+    const newComment = {
+        adminId,
+        rating,
+        author,
+        text
+    };
+    newComment.date = new Date().toISOString();
+
+    setTimeout(() => {
+        dispatch(addComment(newComment));
+    }, 2000);
+};
+
+export const addComment = comment => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: comment
+});
