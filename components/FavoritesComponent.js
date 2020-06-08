@@ -27,13 +27,23 @@ class Favorites extends Component {
     render() {
         const { navigate } = this.props.navigation;
         const renderFavoriteItem = ({ item }) => {
+            const rightButton = [
+                {
+                    text: 'Delete',
+                    type: 'delete',
+                    onPress: () => this.props.deleteFavorite(item.id)
+                }
+            ];
+            
             return (
-                <ListItem
-                    title={item.name}
-                    subtitle={item.description}
-                    leftAvatar={{ source: { uri: baseUrl + item.image } }}
-                    onPress={() => navigate('AdminInfo', { adminId: item.id })}
-                />
+                <Swipeout right={rightButton} autoClose={true}>
+                    <ListItem
+                        title={item.name}
+                        subtitle={item.description}
+                        leftAvatar={{ source: { uri: baseUrl + item.image } }}
+                        onPress={() => navigate('AdminInfo', { adminId: item.id })}
+                    />
+                </Swipeout>
             );
         };
 

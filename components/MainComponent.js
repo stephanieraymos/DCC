@@ -11,8 +11,11 @@ import { createStackNavigator, createDrawerNavigator, DrawerItems } from 'react-
 import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
-import { fetchAdmins, fetchComments, fetchPromotions,
-    fetchPartners } from '../redux/ActionCreators';
+import {
+    fetchAdmins, fetchComments, fetchPromotions,
+    fetchPartners
+} from '../redux/ActionCreators';
+import * as WebBrowser from 'expo-web-browser';
 
 const mapDispatchToProps = {
     fetchAdmins,
@@ -26,95 +29,95 @@ const AboutNavigator = createStackNavigator(
         About: { screen: About }
     },
     {
-        navigationOptions: ({navigation}) => ({
+        navigationOptions: ({ navigation }) => ({
             headerStyle: {
                 backgroundColor: '#980000'
-              },
-              headerTintColor: '#fff',
-              headerTitleStyle: {
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
                 color: '#fff'
-              },
-              headerLeft: <Icon
-                  name='info-circle'
-                  type='font-awesome'
-                  iconStyle={styles.stackIcon}
-                  onPress={() => navigation.toggleDrawer()}
-          />
-          })
+            },
+            headerLeft: <Icon
+                name='info-circle'
+                type='font-awesome'
+                iconStyle={styles.stackIcon}
+                onPress={() => navigation.toggleDrawer()}
+            />
+        })
     }
-  );
+);
 
 const ContactNavigator = createStackNavigator(
     {
         Contact: { screen: Contact }
     },
     {
-        navigationOptions: ({navigation}) => ({
+        navigationOptions: ({ navigation }) => ({
             headerStyle: {
                 backgroundColor: '#980000'
-              },
-              headerTintColor: '#fff',
-              headerTitleStyle: {
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
                 color: '#fff'
-              },
-              headerLeft: <Icon
-                  name='address-card'
-                  type='font-awesome'
-                  iconStyle={styles.stackIcon}
-                  onPress={() => navigation.toggleDrawer()}
-          />
-          })
-    }
-  );
-
-const DirectoryNavigator = createStackNavigator(
-    {
-      Directory: { 
-          screen: Directory,
-          navigationOptions: ({navigation}) => ({
+            },
             headerLeft: <Icon
-                name='list'
+                name='address-card'
                 type='font-awesome'
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
             />
-          })
-        },
-      AdminInfo: { screen: AdminInfo }
-    }, 
+        })
+    }
+);
+
+const DirectoryNavigator = createStackNavigator(
     {
-      initialRouteName: 'Directory',
-      navigationOptions: {
-          headerStyle: {
-              backgroundColor: '#980000'
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-              color: '#fff'
-          }
+        Directory: {
+            screen: Directory,
+            navigationOptions: ({ navigation }) => ({
+                headerLeft: <Icon
+                    name='list'
+                    type='font-awesome'
+                    iconStyle={styles.stackIcon}
+                    onPress={() => navigation.toggleDrawer()}
+                />
+            })
+        },
+        AdminInfo: { screen: AdminInfo }
+    },
+    {
+        initialRouteName: 'Directory',
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: '#980000'
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                color: '#fff'
+            }
         }
     }
 );
 
 const HomeNavigator = createStackNavigator(
     {
-      Home: { screen: Home }
+        Home: { screen: Home }
     },
     {
-      navigationOptions: ({navigation}) => ({
-          headerStyle: {
-              backgroundColor: '#980000'
+        navigationOptions: ({ navigation }) => ({
+            headerStyle: {
+                backgroundColor: '#980000'
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
-              color: '#fff'
+                color: '#fff'
             },
             headerLeft: <Icon
                 name='home'
                 type='font-awesome'
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
-        />
+            />
         })
     }
 );
@@ -124,7 +127,7 @@ const ReservationNavigator = createStackNavigator(
         Reservation: { screen: Reservation }
     },
     {
-        navigationOptions: ({navigation}) => ({
+        navigationOptions: ({ navigation }) => ({
             headerStyle: {
                 backgroundColor: '#980000'
             },
@@ -147,7 +150,7 @@ const FavoritesNavigator = createStackNavigator(
         Favorites: { screen: Favorites }
     },
     {
-        navigationOptions: ({navigation}) => ({
+        navigationOptions: ({ navigation }) => ({
             headerStyle: {
                 backgroundColor: '#5637DD'
             },
@@ -168,14 +171,14 @@ const FavoritesNavigator = createStackNavigator(
 
 const CustomDrawerContentComponent = props => (
     <ScrollView>
-        <SafeAreaView 
+        <SafeAreaView
             style={styles.container}
-            forceInset={{top: 'always', horizontal: 'never'}}>
+            forceInset={{ top: 'always', horizontal: 'never' }}>
             <View style={styles.drawerHeader}>
-                <View style={{flex: 1}}>
+                <View style={{ flex: 1 }}>
                     <Image source={require('./images/logo.jpg')} style={styles.drawerImage} />
                 </View>
-                <View style={{flex: 2}}>
+                <View style={{ flex: 2 }}>
                     <Text style={styles.drawerHeaderText}>Deals and Codes Community</Text>
                 </View>
             </View>
@@ -189,26 +192,26 @@ const MainNavigator = createDrawerNavigator(
         Home: {
             screen: HomeNavigator,
             navigationOptions: {
-                    
-                    drawerIcon: ({focused}) => (
+
+                drawerIcon: ({ focused }) => (
                     <Icon
                         name='home'
                         type='font-awesome'
                         size={24}
-                        color={focused ? '#980000' : 'gray'}              
-                        />
+                        color={focused ? '#980000' : 'gray'}
+                    />
                 )
             }
         },
         Directory: {
             screen: DirectoryNavigator,
             navigationOptions: {
-                drawerIcon: ({focused}) => (
+                drawerIcon: ({ focused }) => (
                     <Icon
                         name='list'
                         type='font-awesome'
                         size={24}
-                        color={focused ? '#980000' : 'gray'}                    />
+                        color={focused ? '#980000' : 'gray'} />
                 )
             }
         },
@@ -216,7 +219,7 @@ const MainNavigator = createDrawerNavigator(
             screen: ReservationNavigator,
             navigationOptions: {
                 drawerLabel: 'Reserve Cooperation',
-                drawerIcon: ({tintColor}) => (
+                drawerIcon: ({ tintColor }) => (
                     <Icon
                         name='heart'
                         type='font-awesome'
@@ -231,7 +234,7 @@ const MainNavigator = createDrawerNavigator(
             screen: FavoritesNavigator,
             navigationOptions: {
                 drawerLabel: 'Favorite Admins',
-                drawerIcon: ({tintColor}) => (
+                drawerIcon: ({ tintColor }) => (
                     <Icon
                         name='heart'
                         type='font-awesome'
@@ -241,18 +244,18 @@ const MainNavigator = createDrawerNavigator(
                 )
             }
         },
-        
+
         About: {
             screen: AboutNavigator,
             navigationOptions: {
                 drawerLabel: 'About Us',
-                drawerIcon: ({focused}) => (
+                drawerIcon: ({ focused }) => (
                     <Icon
                         name={'info-circle'}
                         type='font-awesome'
                         size={24}
                         color={focused ? '#980000' : 'gray'}
-                        
+
                     />
                 )
             }
@@ -261,12 +264,12 @@ const MainNavigator = createDrawerNavigator(
             screen: ContactNavigator,
             navigationOptions: {
                 drawerLabel: 'Contact Us',
-                drawerIcon: ({focused}) => (
+                drawerIcon: ({ focused }) => (
                     <Icon
                         name='address-card'
                         type='font-awesome'
                         size={24}
-                        color={focused ? '#980000' : 'gray'}                    />
+                        color={focused ? '#980000' : 'gray'} />
                 )
             }
         }
@@ -274,8 +277,8 @@ const MainNavigator = createDrawerNavigator(
     {
         drawerBackgroundColor: '#CEC8FF',
         contentOptions: {
-              activeTintColor: '#980000'
-            },
+            activeTintColor: '#980000'
+        },
         contentComponent: CustomDrawerContentComponent
     }
 );
@@ -289,14 +292,16 @@ class Main extends Component {
         this.props.fetchPartners();
     }
 
-  render() {
-      return (
-          <View style={{flex: 1, paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight }}>
-              <MainNavigator />
-          </View>
-      );
-  }
+    render() {
+        return (
+            <View style={{ flex: 1, paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight }}>
+                <MainNavigator />
+            </View>
+        );
+    }
+
 }
+
 
 const styles = StyleSheet.create({
     container: {
@@ -330,3 +335,44 @@ const styles = StyleSheet.create({
 });
 
 export default connect(null, mapDispatchToProps)(Main);
+
+/*
+       INSTALL ----  expo install expo-web-browser
+
+            <View style={styles.container}>
+                <Button
+                    title="Open URL with ReactNative.Linking"
+                    onPress={this._handleOpenWithLinking}
+                    style={styles.button}
+                />
+                <Button
+                    title="Open URL with Expo.WebBrowser"
+                    onPress={this._handleOpenWithWebBrowser}
+                    style={styles.button}
+                />
+            </View>
+      );
+    }
+
+    _handleOpenWithLinking = () => {
+        Linking.openURL('https://expo.io');
+    };
+
+    _handleOpenWithWebBrowser = () => {
+        WebBrowser.openBrowserAsync('https://expo.io');
+    };
+}
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: Constants.statusBarHeight,
+        backgroundColor: '#ecf0f1',
+    },
+    button: {
+        marginVertical: 10,
+    },
+*/
