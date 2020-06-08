@@ -153,6 +153,11 @@ export const addFavorite = adminId => ({
     payload: adminId
 });
 
+export const deleteFavorite = adminId => ({
+    type: ActionTypes.DELETE_FAVORITE,
+    payload: adminId
+});
+
 export const postComment = (adminId, rating, author, text) => dispatch => {
     const newComment = {
         adminId,
