@@ -4,6 +4,7 @@ import { Card, Icon, Rating, Input } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { postFavorite, postComment } from '../redux/ActionCreators';
+import * as Animatable from 'react-native-animatable';
 
 const mapStateToProps = state => {
   return {
@@ -24,49 +25,53 @@ function RenderAdmin(props) {
 
   if (admin) {
     return (
-      <Card
-        featuredTitle={admin.name}
-        image={{ uri: baseUrl + admin.image }}>
-        <Text style={{ margin: 10 }}>
-          {admin.description}
-        </Text>
-        <View
-          style={{
-            display: 'flex', flexDirection: 'row',
-            justifyContent: 'space-between'
-          }}>
-          <Icon
-            name={props.favorite ? 'heart' : 'heart-o'}
-            type='font-awesome'
-            color='#f50'
-            raised
-            reverse
-            onPress={() => props.favorite ?
-              console.log("Already set as a favorite admin") : props.markFavorite()}
-          />
-          <Icon
-            style={styles.cardItem}
-            name='pencil'
-            type='font-awesome'
-            color='#5637DD'
-            raised
-            reverse
-            onPress={() => props.onShowModal()}
-          />
-          <Icon
-            containerStyle={{
-              paddingRight: 8,
-              alignSelf: 'flex-end',
-            }}
-            name={props.message ? 'envelope' : 'envelope-o'}
-            type='font-awesome'
-            color='#0000FF'
-            raised
-            reverse
-            onPress={() => props.message()}
-          />
-        </View>
-      </Card>
+      <Animatable.View animation='fadeInDown' duration={1000} delay={500}>
+
+        <Card
+          featuredTitle={admin.name}
+          image={{ uri: baseUrl + admin.image }}>
+          <Text style={{ margin: 10 }}>
+            {admin.description}
+          </Text>
+          <View
+            style={{
+              display: 'flex', flexDirection: 'row',
+              justifyContent: 'space-between'
+            }}>
+            <Icon
+              name={props.favorite ? 'heart' : 'heart-o'}
+              type='font-awesome'
+              color='#f50'
+              raised
+              reverse
+              onPress={() => props.favorite ?
+                console.log("Already set as a favorite admin") : props.markFavorite()}
+            />
+            <Icon
+              style={styles.cardItem}
+              name='pencil'
+              type='font-awesome'
+              color='#5637DD'
+              raised
+              reverse
+              onPress={() => props.onShowModal()}
+            />
+            <Icon
+              containerStyle={{
+                paddingRight: 8,
+                alignSelf: 'flex-end',
+              }}
+              name={props.message ? 'envelope' : 'envelope-o'}
+              type='font-awesome'
+              color='#0000FF'
+              raised
+              reverse
+              onPress={() => props.message()}
+            />
+          </View>
+        </Card>
+      </Animatable.View>
+
     );
   }
   return <View />;
@@ -90,13 +95,17 @@ function RenderComments({ comments }) {
     )
   };
   return (
-    <Card title='Reviews'>
-      <FlatList
-        data={comments}
-        renderItem={renderCommentItem}
-        keyExtractor={item => item.id.toString()}
-      />
-    </Card>
+    <Animatable.View animation='fadeInUp' duration={1000} delay={500}>
+
+      <Card title='Reviews'>
+        <FlatList
+          data={comments}
+          renderItem={renderCommentItem}
+          keyExtractor={item => item.id.toString()}
+        />
+      </Card>
+    </Animatable.View>
+
   )
 }
 

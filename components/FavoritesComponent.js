@@ -6,6 +6,7 @@ import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 import Swipeout from 'react-native-swipeout';
 import { deleteFavorite } from '../redux/ActionCreators';
+import * as Animatable from 'react-native-animatable';
 
 const mapStateToProps = state => {
     return {
@@ -46,7 +47,7 @@ class Favorites extends Component {
                                     onPress: () => this.props.deleteFavorite(item.id)
                                 }
                             ],
-                        //Disables the ability to exit the box without selecting an option
+                            //Disables the ability to exit the box without selecting an option
                             { cancelable: false }
                         );
                     }
@@ -55,12 +56,16 @@ class Favorites extends Component {
 
             return (
                 <Swipeout right={rightButton} autoClose={true}>
-                    <ListItem
-                        title={item.name}
-                        subtitle={item.description}
-                        leftAvatar={{ source: { uri: baseUrl + item.image } }}
-                        onPress={() => navigate('AdminInfo', { adminId: item.id })}
-                    />
+                    <Animatable.View animation='fadeInRightBig' duration={1000}>
+
+                        <ListItem
+                            title={item.name}
+                            subtitle={item.description}
+                            leftAvatar={{ source: { uri: baseUrl + item.image } }}
+                            onPress={() => navigate('AdminInfo', { adminId: item.id })}
+                        />
+                    </Animatable.View>
+
                 </Swipeout>
             );
         };
