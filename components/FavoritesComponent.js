@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, View, Text } from 'react-native';
+import { FlatList, View, Text, Alert } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { Loading } from './LoadingComponent';
@@ -31,10 +31,28 @@ class Favorites extends Component {
                 {
                     text: 'Delete',
                     type: 'delete',
-                    onPress: () => this.props.deleteFavorite(item.id)
+                    onPress: () => {
+                        Alert.alert(
+                            'Delete Favorite?',
+                            'Are you sure you wish to delete ' + item.name + ' as a favorite?',
+                            [
+                                {
+                                    text: 'Cancel',
+                                    onPress: () => console.log(item.name + 'Not Deleted'),
+                                    style: ' cancel'
+                                },
+                                {
+                                    text: 'OK',
+                                    onPress: () => this.props.deleteFavorite(item.id)
+                                }
+                            ],
+                        //Disables the ability to exit the box without selecting an option
+                            { cancelable: false }
+                        );
+                    }
                 }
             ];
-            
+
             return (
                 <Swipeout right={rightButton} autoClose={true}>
                     <ListItem
