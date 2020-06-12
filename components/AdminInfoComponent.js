@@ -203,7 +203,7 @@ class AdminInfo extends Component {
               value={this.state.text}
 
             />
-            <View steyle={{ margin: 10 }}>
+            <View style={{ margin: 10 }}>
               <Button
                 title='Submit'
                 color='#5637DD'
