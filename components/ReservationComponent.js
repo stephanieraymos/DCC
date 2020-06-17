@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, StyleSheet, Switch, Button, Modal } from 'react-native';
+import { Text, View, ScrollView, StyleSheet, Switch, Button, Modal, Alert } from 'react-native';
 import DatePicker from 'react-native-datepicker';
+import * as Permissions from 'expo-permissions';
+import { Notifications } from 'expo';
 
 class Reservation extends Component {
 
@@ -20,21 +22,70 @@ class Reservation extends Component {
     }
 
     toggleModal() {
-        this.setState({showModal: !this.state.showModal});
+        this.setState({ showModal: !this.state.showModal });
     }
 
     handleReservation() {
         console.log(JSON.stringify(this.state));
-        this.toggleModal();
+
+        const message =
+            `Returning: ${this.state.returning}
+        \nAmazon Seller? ${ this.state.amazon}
+        '\nDate: ${this.state.date}`;
+
+        Alert.alert(
+            "Begin Search?",
+            message,
+            [
+                {
+                    text: 'Cancel',
+                    onPress: () => {
+                        console.log('Cancel Reservation');
+                        this.resetForm();
+                    },
+                    style: "cancel"
+                },
+                { 
+                    text: "OK", 
+                    onPress: () => {
+                        this.presentLocalNotification(this.state.date);
+                        this.resetForm();
+                        }
+            }
+            ],
+            { cancelable: false }
+        );
     }
 
     resetForm() {
         this.setState({
-            returning: false,
-            amazon: true,
+            returning: 1,
+            amazon: false,
             date: '',
-            showModal: false
+            //   showAlert: false
         });
+    }
+
+    async obtainNotificationPermission() {
+        const permission = await Permissions.getAsync(Permissions.USER_FACING_NOTIFICATIONS);
+        if (permission.status !== 'granted') {
+            const permission = await Permissions.askAsync(Permissions.USER_FACING_NOTIFICATIONS);
+            if (permission.status !== 'granted') {
+                Alert.alert('Permission not granted to show notifications');
+            }
+            return permission;
+        }
+        return permission;
+    }
+
+    async presentLocalNotification(date) {
+        const permission = await this.obtainNotificationPermission();
+        if (permission.status === 'granted') {
+            Notifications.presentLocalNotificationAsync({
+                title: 'Your Reservation Request',
+                body: 'Cooperation for ' + date + ' requested'
+            });
+        }
     }
 
     render() {
@@ -45,8 +96,8 @@ class Reservation extends Component {
                     <Switch
                         style={styles.formItem}
                         value={this.state.returning}
-                        trackColor={{true: '#980000', false: null}}
-                        onValueChange={value => this.setState({returning: value})}>
+                        trackColor={{ true: '#980000', false: null }}
+                        onValueChange={value => this.setState({ returning: value })}>
                     </Switch>
                 </View>
                 <View style={styles.formRow}>
@@ -54,14 +105,14 @@ class Reservation extends Component {
                     <Switch
                         style={styles.formItem}
                         value={this.state.amazon}
-                        trackColor={{true: '#980000', false: null}}
-                        onValueChange={value => this.setState({amazon: value})}>
+                        trackColor={{ true: '#980000', false: null }}
+                        onValueChange={value => this.setState({ amazon: value })}>
                     </Switch>
                 </View>
                 <View style={styles.formRow}>
                     <Text style={styles.formLabel}>Today's date</Text>
                     <DatePicker
-                        style={{flex: 2, marginRight: 20}}
+                        style={{ flex: 2, marginRight: 20 }}
                         date={this.state.date}
                         format='YYYY-MM-DD'
                         mode='date'
@@ -80,7 +131,7 @@ class Reservation extends Component {
                                 marginLeft: 36
                             }
                         }}
-                        onDateChange={date => {this.setState({date: date})}}
+                        onDateChange={date => { this.setState({ date: date }) }}
                     />
                 </View>
                 <View style={styles.formRow}>
@@ -91,7 +142,7 @@ class Reservation extends Component {
                         accessibilityLabel='Tap me to submit a request for cooperation'
                     />
                 </View>
-                <Modal
+                {/* <Modal
                     animationType={'slide'}
                     transparent={false}
                     visible={this.state.showModal}
@@ -110,7 +161,7 @@ class Reservation extends Component {
                             title='Close'
                         />
                     </View>
-                </Modal>
+                </Modal> */}
             </ScrollView>
         );
     }
@@ -131,7 +182,7 @@ const styles = StyleSheet.create({
     formItem: {
         flex: 1
     },
-    modal: { 
+    modal: {
         justifyContent: 'center',
         margin: 20
     },
