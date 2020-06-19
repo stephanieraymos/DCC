@@ -128,7 +128,7 @@ class RegisterTab extends Component {
             lastname: '',
             email: '',
             remember: false,
-            imageUrl: baseUrl + 'images/logo.png'
+            imageUrl: baseUrl + 'images/logo.jpg'
         };
     }
 
@@ -178,7 +178,7 @@ class RegisterTab extends Component {
                     <View style={styles.imageContainer}>
                         <Image
                             source={{uri: this.state.imageUrl}}
-                            loadingIndicatorSource={require('./images/logo.png')}
+                            loadingIndicatorSource={require('./images/logo.jpg')}
                             style={styles.image}
                         />
                         <Button
@@ -261,7 +261,7 @@ const Login = createBottomTabNavigator(
     },
     {
         tabBarOptions: {
-            activeBackgroundColor: '#5637DD',
+            activeBackgroundColor: '#980000',
             inactiveBackgroundColor: '#CEC8FF',
             activeTintColor: '#fff',
             inactiveTintColor: '#808080',
