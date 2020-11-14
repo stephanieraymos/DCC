@@ -15,13 +15,6 @@ export const ADMINS = [
   },
   {
       id: 2,
-      name:"Laura Nelson",
-      image: "/components/images/laura.jpg",
-      featured: false,
-      description: "Came onto Deals and Codes Community as a valued admin in 2019"
-  },
-  {
-      id: 3,
       name: "Skyler Nordquist",
       image: "/components/images/skyler.jpg",
       featured: false,
