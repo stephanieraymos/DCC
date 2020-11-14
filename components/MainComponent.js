@@ -19,6 +19,9 @@ import {
 } from '../redux/ActionCreators';
 import NetInfo from '@react-native-community/netinfo';
 
+    //Disabling yellow warnings
+    console.disableYellowBox = true;
+    
 const mapDispatchToProps = {
     fetchAdmins,
     fetchComments,

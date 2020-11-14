@@ -72,36 +72,4 @@ export const COMMENTS =
         author: "Sarah Louise",
         date: "2020-05-23T19:44Z"
     },
-    {
-        id: 9,
-        adminId: 2,
-        rating: 5, 
-        text: "Thank you Laura!",
-        author: "Tinus Lorvaldes",
-        date: "2020-05-25T16:30Z"
-    },
-    {
-        id: 12,
-        adminId: 2,
-        rating: 4, 
-        text: "Loving the deals! Wish some of them were avalible for more options but I chose the blue one. Thanks.",
-        author: "Ann Dabramov",
-        date: "2020-05-23T19:44Z"
-    },
-    {
-        id: 13,
-        adminId: 2,
-        rating: 5, 
-        text: "This is amazing! Thank you!.",
-        author: "DeoLinda Antoinette",
-        date: "2020-05-23T19:44Z"
-    },
-    {
-        id: 14,
-        adminId: 2,
-        rating: 5, 
-        text: "Thanks for the deals",
-        author: "Rita Anderson",
-        date: "2020-05-23T19:44Z"
-    },
 ]
