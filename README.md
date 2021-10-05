@@ -1,2 +1,2 @@
 # DCC
-An app I'm working on for a deals platform called Deals and Codes Community 
+A React Native application for a deals platform called Deals and Codes Community 
